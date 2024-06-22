@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.LongOnMapper">
+    <!--根据account查询账户信息 -->
+    <select id="find"
+            resultType="com.example.demo.entity.AccountPassword">
+        select *
+        from rejister
+        where account = #{account}
+    </select>
+    <!--根据account查询账户密码 -->
+    <select id="findPassWord"
+            resultType="com.example.demo.entity.AccountPassword">
+        select password
+        from rejister
+        where account = #{account}
+    </select>
+    <!--添加用户 -->
+    <insert id="insert" parameterType="com.example.demo.entity.AccountPassword">
+        INSERT INTO rejister (account, password,are,phone, name, relationTIme) VALUES
+                    (#{account}, #{password},#{are}#{phone},#{name},#{relationTIme})
+    </insert>
+
+  <update id="update" parameterType="com.example.demo.entity.AccountPassword">
+      update rejister set (account, password,are,phone, name, relationTIme) VALUES (#{account}, #{password},#{are}#{phone},#{name},#{relationTIme})
+      where account = #{account}
+
+</update>
+
+    <!--商城 -->
+    <!--账号管理添加账号 -->
+    <insert id="insertAccount" parameterType="com.example.demo.shopping.account.entity.Account">
+        INSERT INTO account (name, phone,e-mail,role) VALUES
+            (#{name}, #{phone},#{e-mail},#{role})
+    </insert>
+    <!--账号管理查询账号 -->
+    <select id="selectAccount" parameterType="com.example.demo.shopping.account.entity.Account">
+        select *
+        from account
+        where name = #{name}
+    </select>
+    <!--账号管理修改账号 -->
+    <update id="updateAccount" parameterType="com.example.demo.shopping.account.entity.Account">
+        update account set (name, phone,e-mail,role) VALUES (#{name}, #{phone},#{e-mail},#{role})
+    </update>
+</mapper>

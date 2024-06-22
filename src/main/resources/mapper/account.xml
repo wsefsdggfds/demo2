@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.shopping.account.mapper.AccountMapper">
+
+    <!--商城 -->
+    <!--账号管理添加账号 -->
+    <insert id="insertAccount" parameterType="com.example.demo.shopping.account.entity.Account">
+        INSERT INTO account (name, phone,e-mail,role) VALUES
+            (#{name}, #{phone},#{e-mail},#{role})
+    </insert>
+    <!--账号管理查询账号 -->
+    <select id="selectAccount" resultType="com.example.demo.shopping.account.entity.Account">
+        select *
+        from account
+        where name = #{name}
+    </select>
+    <select id="selectAccountRole" resultType="com.example.demo.shopping.account.entity.Account">
+        select *
+        from account LIMIT
+        where role = #{role}  LIMIT #{pageNo},#{pageSize};
+    </select>
+    <select id="selectAccountPhone" resultType="com.example.demo.shopping.account.entity.Account">
+        select *
+        from account
+        where phone = #{phone}
+    </select>
+    <!--账号管理修改账号 -->
+    <update id="updateAccount" parameterType="com.example.demo.shopping.account.entity.Account">
+        update account set (name, phone,e-mail,role) VALUES (#{name}, #{phone},#{e-mail},#{role})
+        where phone = #{phone}
+    </update>
+</mapper>
