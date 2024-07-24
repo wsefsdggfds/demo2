@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.generator.mapper.ClassificationMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.generator.domain.Classfication">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="topDocumentId" column="top_document_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,type,
+        parent_id,sort,top_document_i,state
+    </sql>
+
+    <insert id="insert" parameterType="com.example.demo.generator.domain.Classfication">
+        insert into classfication (<include refid="Base_Column_List"/>) values ( #{id},#{name},#{type},
+        #{parent_id},#{sort},#{top_document_id},#{stae});
+    </insert>
+    <select id="select" resultMap="BaseResultMap">
+        select * from classfication
+        <where>
+            <if test="name!=null">
+                and name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="type !=null">
+                and type=#{type}
+            </if>
+            <if test="state!=null">
+                and state=#{state}
+            </if>
+        </where>
+    </select>
+    <select id="selectSecond" resultMap="BaseResultMap">
+        select * from classfication
+        <where>
+            <if test="parentId!=null">
+                and parent_id=#{parentId}
+            </if>
+            <if test="name!=null">
+                and name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="type !=null">
+                and type=#{type}
+            </if>
+            <if test="state!=null">
+                and state=#{state}
+            </if>
+        </where>
+    </select>
+</mapper>

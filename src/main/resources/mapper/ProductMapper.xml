@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.generator.mapper.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.generator.domain.Product">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="productSpecificationRelationId" column="product_specification_relation_id" jdbcType="INTEGER"/>
+            <result property="classficationId" column="classfication_id" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="deliveryMethod" column="delivery_method" jdbcType="VARCHAR"/>
+            <result property="detailDesc" column="detail_desc" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="lanchDate" column="lanch_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,description,
+        product_specification_relation_id,classfication_id,status,
+        delivery_method,detail_desc,create_time,
+        create_by,lanch_date
+    </sql>
+    <insert id="add" parameterType="com.example.demo.generator.domain.Product">
+        insert into product (<include refid="Base_Column_List"/>) values ( #{id},#{name},#{description},
+        #{product_specification_relation_id},#{classfication_id},#{status},
+        #{delivery_method},#{detail_desc})
+
+
+
+    </insert>
+<!--    根据名字模糊查询，并返回商品id-->
+    <select id="selectProduct" resultMap="BaseResultMap" >
+        select id,name  from product where  name like "%"#{name}"%" L #{pageHelperOffset}, #{pageHelperSize}
+    </select>
+<!--    <select id="selectClassificationById" resultMap="BaseResultMap">-->
+<!--            select name from lable where id in-->
+<!--            <foreach item="labelId" collection="list" >-->
+<!--                #{labelId}-->
+<!--            </foreach>-->
+<!--    </select>-->
+</mapper>

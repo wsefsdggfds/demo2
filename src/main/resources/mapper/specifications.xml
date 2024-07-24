@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.shopping.specifications.mapper.SpecificationsMapper">
+
+    <!--商城 -->
+    <!--商品管理 -->
+
+    <!--添加商品规格 -->
+    <insert id="insertSpecifications">
+        insert into speecifications
+        (id,super_id, set_price,atteribute, promotioal_price, picture, single_piece_weight, inventory)
+        values (#{id},#{superId},#{attribute}, #{price}#{promotionalPrice}, #{picture}, #{ singlePieceWeight}, #{inventory})
+    </insert>
+
+</mapper>

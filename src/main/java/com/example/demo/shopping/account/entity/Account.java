@@ -10,6 +10,8 @@ public class Account {
     private String landIp;
     private String landState;
     private String eMail;
+    private String passWord;
+
 
     public String getName() {
         return name;
@@ -65,5 +67,13 @@ public class Account {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 }

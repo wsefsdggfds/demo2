@@ -10,6 +10,7 @@ public class AccountPassword {
     private String name;
     private Timestamp relationTIme;
 
+
     public String getAccount() {
         return account;
     }

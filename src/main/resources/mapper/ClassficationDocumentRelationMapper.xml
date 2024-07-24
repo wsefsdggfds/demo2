@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.generator.mapper.ClassficationDocumentRelationMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.generator.domain.ClassficationDocumentRelation">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="classficationId" column="classfication_id" jdbcType="INTEGER"/>
+            <result property="documentId" column="document_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,classfication_id,document_id
+    </sql>
+    <insert id="save"></insert>
+
+    <select id="selectDocument" resultMap="BaseResultMap" >
+        select * from classfication_document_relation where classfication_id in
+        <foreach collection="list" item="classficationId" open="(" separator="," close=")">
+            #{classficationId}
+        </foreach>
+    </select>
+</mapper>

@@ -7,8 +7,8 @@
     <!--商城 -->
     <!--账号管理添加账号 -->
     <insert id="insertAccount" parameterType="com.example.demo.shopping.account.entity.Account">
-        INSERT INTO account (name, phone,e-mail,role) VALUES
-            (#{name}, #{phone},#{e-mail},#{role})
+        INSERT INTO account (name, phone,e_mail,role) VALUES
+            (#{name}, #{phone},#{eMail},#{role})
     </insert>
     <!--账号管理查询账号 -->
     <select id="selectAccount" resultType="com.example.demo.shopping.account.entity.Account">
@@ -26,9 +26,31 @@
         from account
         where phone = #{phone}
     </select>
+    <select id="selectNameAll" resultType="com.example.demo.shopping.account.entity.Account">
+        select *
+        from account
+        where name = #{name}
+    </select>
     <!--账号管理修改账号 -->
     <update id="updateAccount" parameterType="com.example.demo.shopping.account.entity.Account">
-        update account set (name, phone,e-mail,role) VALUES (#{name}, #{phone},#{e-mail},#{role})
+        update account set name=#{name},e_mail=#{eMail},role=#{role}
         where phone = #{phone}
     </update>
+    <delete id="delete">
+        delete  *
+        from account
+        where phone = #{phone}
+    </delete>
+    <select id="selectByNameAndPhone" resultType="com.example.demo.shopping.account.entity.Account">
+        SELECT * FROM account
+        <where>
+            <if test="name != null">
+                AND name = #{name}
+            </if>
+            <if test="phone != null">
+                AND phone = #{phone}
+            </if>
+        </where>
+    </select>
+
 </mapper>

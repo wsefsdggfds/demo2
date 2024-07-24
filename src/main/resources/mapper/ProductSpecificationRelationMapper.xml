@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.generator.mapper.ProductSpecificationRelationMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.generator.domain.ProductSpecificationRelation">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="productId" column="product_id" jdbcType="VARCHAR"/>
+            <result property="specificationId" column="specification_id" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--    <sql id="Base_Column_List">-->
+    <!--        id,product_id,specification_id-->
+    <!--    </sql>-->
+    <insert id="add">
+        insert into product_specification_relation (id,product_id,specification_id) values (#{id},#{productId},#{specificationId});
+    </insert>
+
+
+
+    <select id="selectProduct" resultMap="BaseResultMap">
+        select * from product_specification_relation where product_id
+        in
+        <foreach item="productId" collection="list" open="(" separator="," close=")">
+        (#{productId})
+    </foreach>
+    </select>
+
+
+</mapper>

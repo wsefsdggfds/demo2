@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.generator.mapper.ProductLabelRelationMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.generator.domain.ProductLabelRelation">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="productId" column="product_id"  />
+            <result property="labelId" column="label_id" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,product_id,label_id
+    </sql>
+    <select id="select" resultMap="BaseResultMap">
+        select * from product_label_relation
+        where product_id in
+        <foreach item="productId" collection="list" open="(" separator="," close=")">
+            #{productId}
+        </foreach>
+
+    </select>
+    <insert id="add" parameterType="com.example.demo.generator.domain.ProductLabelRelation">
+        insert into product_label_relation (<include refid="Base_Column_List"/>) values ( #{id},#{productId},#{labelId},
+        #{parent_id},#{sort},#{top_document_id},#{stae});
+    </insert>
+
+</mapper>

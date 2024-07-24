@@ -20,8 +20,8 @@ class Demo2ApplicationTests {
     void contextLoads1() {
         Account account = new Account();
         account.setName("ddd");
-        String s = accountController.select(account);
-        System.out.println("====="+s);
+        //String s = accountController.select(account);
+        System.out.println("=====");
     }
     @Test
     void contextLoads2() {
